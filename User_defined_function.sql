@@ -1,0 +1,5 @@
+CREATE DEFINER=`root`@`localhost` FUNCTION `show_msg`() RETURNS varchar(500) CHARSET utf8mb4
+BEGIN
+
+RETURN "TP IS PENDING";
+END

@@ -1,0 +1,227 @@
+/* SUB QUERY:
+QUERY RETURN INSIDE THE ANOTHER QUERY 
+-->INNER QUERY WILL EXCUTE FIRST
+--> WORKING PRINCIPLE OF SUB QUERY
+--> WHY ARE USED
+---->CASE1: WHENEVER THERE IS UNKNOWN  VALUE PRESENT IN QU TO FIND THAT UNKNOWN VALUE WE SUBQUERY
+*/
+
+
+
+/*WQTD NAME OF EMPLOYEE IF EMPLOYEE IS GETTING SALARY MORE THAN 2000*/
+
+SELECT ENAME
+FROM EMP
+WHERE SAL > 2000;
+
+/*SUBQUERY*/
+/*WQTD NAME OF EMPLOYEE IF EMPLOYEE IS GETTING SALARY MORE THAN ALLEN*/
+
+   SELECT ENAME 
+   FROM EMP
+   WHERE SAL> (select sal 
+               FROM emp 
+               WHERE ename="ALLEN");
+   
+   
+   /*WQTD NAME AND SALARY OF EMPLOYEE IF EMPLOYEE IS GETTING SALARY LESS THAN MARTIN*/
+   
+SELECT ENAME, SAL
+FROM EMP
+WHERE SAL< (SELECT SAL 
+            FROM EMP
+            WHERE ENAME = 'MARTIN');
+            
+  /*WQTD NAME AND DEPTNO OF EMPLOYEE IF EMPLOYEE IS WORKING IN SAME DEPTNO AS MILLER*/
+  
+  SELECT ENAME, DEPTNO
+  FROM EMP WHERE DEPTNO =
+        (SELECT DEPTNO
+         FROM EMP
+         WHERE ENAME = 'MILLER');
+         
+         
+	/*WQTD NAME & JOB OF EMPLOYEE IF EMPLOYEE IS WORKING IN SAME DESIGNATION AS SCOTT*/
+     SELECT * FROM EMP;
+     SELECT ENAME, JOB 
+     FROM EMP
+     WHERE JOB = (SELECT JOB
+                  FROM EMP
+                  WHERE ENAME='SCOTT')
+     
+     
+/*WQTD NAME & HIREDATE OF EMPLOYEE IF EMPLOYEE NAME HAS CHARACTER A IN THERE NAME AND HIRED AFTER JAMES*/
+
+SELECT ENAME, HIREDATE 
+FROM EMP
+WHERE ename like '%A%' 
+AND HIREDATE>(SELECT HIREDATE
+			  FROM EMP
+              WHERE ename ='JAMES');
+	
+/*WQTD NAME & JOB OF EMPLOYEE IF EMPLOYEE IS WORKING AS
+ MANAGER AND GETTING SALARY MORE THAN BLAKE*/
+ SELECT * FROM EMP;
+ SELECT ENAME , JOB
+ FROM EMP
+ WHERE  JOB='MANAGER' AND SAL>  
+       ( SELECT JOB
+       FROM emp
+       WHERE ENAME='BLAKE');
+       
+
+/* WQTD NAME AND SALARY OF EMPLOYEE IF EMPLOYEE
+IS GETTING SALARY MORE THAN ALLEN  BUT LESS THAN KING*/
+
+SELECT ENAME , SAL
+FROM EMP
+WHERE SAL >(SELECT ENAME
+            FROM EMP
+			WHERE ENAME="ALLEN")  AND SAL<( SELECT ENAME
+								            FROM EMP
+                                             WHERE ENAME="KING");
+ 
+ 
+ /*WQTD NAME AND HIREDATE OF EMPLOYEE IF EMPLOYEE IS HIRED AFTER
+JAMES BUT EMPLOYEE HIRED BEFORE JONES*/
+
+SELECT ENAME, HIREDATE
+FROM EMP
+WHERE HIREDATE > (SELECT HIREDATE
+                  FROM emp 
+                  WHERE ENAME ='JAMES') AND HIREDATE <( SELECT HIREDATE
+														FROM EMP 
+                                                        WHERE ENAME ='JONES');
+                                                        
+                                                        
+                                                        
+/*WQTD THE DEPTNO OF MILLER*/
+SELECT DEPTNO
+FROM EMP
+WHERE ENAME='MILLER';
+
+/*WQTD THE DNAME OF MILLER*/
+
+SELECT DEPTNO
+FROM EMP
+WHERE ENAME='MILLER';
+
+/*CASE2: WHENEVER DATA HAS TO BE SELECTED BUT CONDITION
+ PRESENT IN DIFFERENT TABLE WE USE SUBQUERY*/
+  
+ SELECT DNAME 
+ FROM dept
+ WHERE DEPTNO=(SELECT DEPTNO
+               FROM EMP
+               WHERE ENAME='MILLER');
+ 
+ 
+ /*WQTD LOCATION OF KING*/
+ SELECT loC
+ FROM dept
+ WHERE DEPTNO=(SELECT DEPTNO 
+               FROM EMP
+               WHERE ENAME='KING');
+ 
+ 
+ /*WQTD DETAILS OF EMPLOYEE IF EMPLOYEES ARE WORKING IN LOCATION NEW YORK*/
+ SELECT * FROM emp
+ WHERE DEPTNO=(SELECT DEPTNO
+               FROM dept                  
+               WHERE LOC='NEW YORK');
+               
+               
+/*WQTD NAME & JOB OF EMPLOYEE WORKING IN DNAME SALES*/
+SELECT ENAME, JOB
+FROM emp
+WHERE DEPTNO=(SELECT DEPTNO
+               FROM dept
+               WHERE DNAME='SALES');
+               
+
+
+               
+
+               
+
+
+
+
+               
+               
+
+               
+               
+
+               
+               
+
+
+
+
+
+
+
+		
+        
+
+               
+
+               
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
